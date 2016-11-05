@@ -3,10 +3,19 @@ import java.math.BigInteger;
 public class WordRank {
 	
 	public static final int mod = 1000000007;
-	public static void main(String[] args) {
-
-		String s = "axaelixedhtshsixbuzouqtjrkpyafthezfuehcovcqlbvmkbrwxhzrxymricmehktxepyxomxcx";
-
+	
+	public int[] getWordRanks(String[] words) {
+		int n = words.length;
+		int[] ranks = new int[n];
+		for (int i = 0; i < n; i++) {
+			ranks[i] = getWordRank(words[i]);
+		}
+		
+		return words;
+	}
+	
+	public int getWordRank(String s) {
+		//String s = "axaelixedhtshsixbuzouqtjrkpyafthezfuehcovcqlbvmkbrwxhzrxymricmehktxepyxomxcx";
 		BigInteger rank = new BigInteger("0");
 		BigInteger bottom = new BigInteger("1");
 		int[] counts = new int[26]; //all lower case -> a = 97, z = 122
@@ -26,10 +35,12 @@ public class WordRank {
 		}
 
 		int r = rank.mod(BigInteger.valueOf(mod)).intValue();
-		System.out.println(r);
+		//System.out.println(r);
+		
+		return r;
 	}
 
-	private static BigInteger factorial (int n) {
+	private BigInteger factorial (int n) {
 		BigInteger fact = new BigInteger("1");
 		for (int i = 2; i <= n; i++) {
 			fact = fact.multiply(BigInteger.valueOf(i));
